@@ -12,8 +12,15 @@ namespace VectoresPararm
         static void Main(string[] args)
         {
             int[] x = new int[MAX];
+            string[] Nombres = new string[MAX];
+
             Leer(x);
             Imprimir(x);
+
+            Ordenar(x);
+            Console.WriteLine("\nVector Ordenado: ");
+            Imprimir(x);
+
             if (Buscar(x, 3) == true)
                 Console.WriteLine("\n3 Encontrado");
             else
@@ -22,6 +29,10 @@ namespace VectoresPararm
                 Console.WriteLine("\n10 Encontrado");
             else
                 Console.WriteLine("\n10 NO EXISTE");
+            //TRABAJANDO CON EL VECTOR DE CADENA DE VECTORES
+            Console.Write("\nIngrese los nombres");
+            LeerNombres(Nombres);
+            ImprimirNombre(Nombres);
 
             Console.ReadKey();
         }
@@ -29,15 +40,30 @@ namespace VectoresPararm
         {
             for (int i=0;i<MAX;i++)
             {
-                Console.WriteLine("\nIngrese el elemento {0}", i + 1);
+                Console.Write("\nIngrese el elemento {0}: ", i + 1);
                 x[i] = Int32.Parse(Console.ReadLine());
+            }
+        }
+        public static void LeerNombres(string[] x)
+        {
+            for (int i = 0; i < MAX; i++)
+            {
+                Console.Write("\nIngrese el Nombre : ", i + 1);
+                x[i] = Console.ReadLine();
             }
         }
         public static void Imprimir(int [] x)
         {
             foreach(int num in x)
             {
-                Console.WriteLine("\nElemento {0}",num);
+                Console.Write("\nElemento {0} ",num);
+            }
+        }
+        public static void ImprimirNombre(string[] x)
+        {
+            foreach (string num in x)
+            {
+                Console.Write("\nNombre Ordenado: ", num);
             }
         }
         public static bool Buscar(int[] x, int y)
@@ -64,6 +90,21 @@ namespace VectoresPararm
                 i++;
             }
             return encontrado;
+        }
+        public static void Ordenar(int []x)
+        {
+            int aux = 0;
+            for (int i=0; i<x.Length;i++)
+                for (int j = i + 1; j < x.Length; j++)
+                    if(x[i]>x[j])
+                    {
+                        aux = x[i];
+                        x[i] = x[j];
+                        x[j]= aux;
+                    }
+                
+
+            
         }
     }
 }
